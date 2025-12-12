@@ -165,10 +165,13 @@ const EventModal: React.FC<EventModalProps> = ({ event, isOpen, onClose }) => {
         form.append("screenshot", screenshotFile);
       }
 
-      const res = await fetch("https://zerone-backend.onrender.com/register", {
-        method: "POST",
-        body: form,
-      });
+    const API = import.meta.env.VITE_BACKEND_URL;
+
+const res = await fetch(`${API}/register`, {
+  method: "POST",
+  body: form,
+});
+
 
       const data = await res.json();
       if (data.ok) setView("success");
